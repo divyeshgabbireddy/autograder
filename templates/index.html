@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Grader</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Automated Test Grader</h1>
+        
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <form method="post" enctype="multipart/form-data">
+            <div class="upload-section">
+                <label for="test">Upload Test PDF:</label>
+                <input type="file" id="test" name="test" accept=".pdf" required>
+            </div>
+            
+            <div class="upload-section">
+                <label for="rubric">Upload Rubric PDF:</label>
+                <input type="file" id="rubric" name="rubric" accept=".pdf" required>
+            </div>
+            
+            <button type="submit">Grade Test</button>
+        </form>
+    </div>
+</body>
+</html>

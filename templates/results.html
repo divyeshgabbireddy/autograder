@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Grading Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Grading Results</h1>
+        
+        {% for section in results.sections %}
+            <div class="section">
+                <h2>{{ section.name }} Section</h2>
+                
+                {% for question in section.questions %}
+                    <div class="question">
+                        <h3>Question {{ question.number }}</h3>
+                        <p><strong>Student Answer:</strong> {{ question.student_answer }}</p>
+                        <p><strong>Correct Answer:</strong> {{ question.correct_answer }}</p>
+                        <p><strong>Score:</strong> {{ question.points_earned }}/{{ question.points_possible }}</p>
+                        <p><strong>Feedback:</strong> {{ question.feedback }}</p>
+                    </div>
+                {% endfor %}
+                
+                <div class="section-total">
+                    Section Total: {{ results.section_scores[section.name].earned }}/{{ results.section_scores[section.name].possible }}
+                </div>
+            </div>
+        {% endfor %}
+        
+        <div class="final-score">
+            <h2>Final Score</h2>
+            <p>Total Points: {{ results.total_score }}/{{ results.total_possible }}</p>
+            <p>Percentage: {{ results.percentage }}%</p>
+        </div>
+        
+        <a href="/" class="button">Grade Another Test</a>
+    </div>
+</body>
+</html>

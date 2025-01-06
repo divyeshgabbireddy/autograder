@@ -1,0 +1,9 @@
+# Environment variables and sensitive data
+.env
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# Uploads folder
+uploads/
